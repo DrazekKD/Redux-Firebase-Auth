@@ -1,21 +1,24 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { FirebaseContext } from '../Firebase';
+import React, {Component} from 'react';
+import {Link, withRouter} from 'react-router-dom';
+import {FirebaseContext} from '../Firebase';
 import * as ROUTES from '../../constants/routes';
-import { withFirebase } from '../Firebase';
-import { compose } from 'recompose';
+import * as ROLES from '../../constants/roles';
+import {withFirebase} from '../Firebase';
+import {compose} from 'recompose';
+
 const INITIAL_STATE = {
 	username: '',
 	email: '',
 	passwordOne: '',
 	passwordTwo: '',
+	isAdmin: false,
 	error: null,
 };
 
 const SignUpPage = () => (
 	<div>
 		<h1>SignUp</h1>
-		<SignUpForm />
+		<SignUpForm/>
 	</div>
 );
 
@@ -23,11 +26,19 @@ class SignUpFormBase extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = { ...INITIAL_STATE };
+		this.state = {...INITIAL_STATE};
 	}
 
+	onChangeCheckbox = event => {
+		this.setState({[event.target.name]: event.target.checked});
+	};
 	onSubmit = event => {
-		const { username, email, passwordOne } = this.state;
+		const {username, email, passwordOne, isAdmin} = this.state;
+		const roles = {};
+
+		if (isAdmin) {
+			roles[ROLES.ADMIN] = ROLES.ADMIN;
+		}
 
 		this.props.firebase
 			.doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -38,17 +49,18 @@ class SignUpFormBase extends Component {
 					.set({
 						username,
 						email,
+						roles
 					});
 			})
 			.catch(error => {
-				this.setState({ error });
+				this.setState({error});
 			});
 
 		event.preventDefault();
 	};
 
 	onChange = event => {
-		this.setState({ [event.target.name]: event.target.value });
+		this.setState({[event.target.name]: event.target.value});
 	};
 
 	render() {
@@ -58,6 +70,7 @@ class SignUpFormBase extends Component {
 			email,
 			passwordOne,
 			passwordTwo,
+			isAdmin,
 			error,
 		} = this.state;
 
@@ -97,6 +110,15 @@ class SignUpFormBase extends Component {
 					type="password"
 					placeholder="Confirm Password"
 				/>
+				<label>
+					Admin:
+					<input
+						name="isAdmin"
+						type="checkbox"
+						checked={isAdmin}
+						onChange={this.onChangeCheckbox}
+					/>
+				</label>
 				<button disabled={isInvalid} type="submit">
 					Sign Up
 				</button>
@@ -120,6 +142,6 @@ const SignUpForm = compose(
 
 export default SignUpPage;
 
-export { SignUpForm, SignUpLink };
+export {SignUpForm, SignUpLink};
 
 // import { Link, withRouter } from 'react-router-dom';
