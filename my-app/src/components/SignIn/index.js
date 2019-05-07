@@ -6,6 +6,7 @@ import { PasswordForgetLink } from '../PasswordForget';
 import { SignUpLink } from '../SignUp';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import * as ERRORS from '../../constants/errors';
 
 const SignInPage = () => (
 	<div>
@@ -102,6 +103,10 @@ class SignInGoogleBase extends Component {
 					});
 			})
 			.catch(error => {
+				if (error.code === ERRORS.SINGIN_ERROR_CODE_ACCOUNT_EXISTS) {
+					error.message = ERRORS.SINGIN_ERROR_MSG_ACCOUNT_EXISTS;
+				}
+
 				this.setState({ error });
 			});
 

@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {Link, withRouter} from 'react-router-dom';
+import {SINGUP} from "../../constants/errors";
 import {FirebaseContext} from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
+import * as ERRORS from '../../constants/errors';
 import {withFirebase} from '../Firebase';
 import {compose} from 'recompose';
 
@@ -53,6 +55,9 @@ class SignUpFormBase extends Component {
 					});
 			})
 			.catch(error => {
+				if (error.code === ERRORS.SINGUP_ERROR_CODE_ACCOUNT_EXISTS) {
+					error.message = ERRORS.SINGUP_ERROR_MSG_ACCOUNT_EXISTS;
+				}
 				this.setState({error});
 			});
 
