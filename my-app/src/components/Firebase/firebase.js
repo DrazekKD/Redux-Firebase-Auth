@@ -21,6 +21,8 @@ class Firebase {
 		this.db = app.database();
 
 		this.googleProvider = new app.auth.GoogleAuthProvider();
+
+		this.serverValue = app.database.ServerValue;
 	}
 
 	// *** Auth API ***
@@ -75,6 +77,12 @@ class Firebase {
 	user = uid => this.db.ref(`users/${uid}`);
 
 	users = () => this.db.ref('users');
+
+	// *** Message API ***
+
+	message = uid => this.db.ref(`messages/${uid}`);
+
+	messages = () => this.db.ref('messages');
 }
 
 export default Firebase;
