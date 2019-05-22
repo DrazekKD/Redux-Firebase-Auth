@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
-import { withAuthorization, withEmailVerification } from '../Session';
+import {AuthUserContext, withAuthorization, withEmailVerification} from '../Session';
 import { withFirebase } from '../Firebase';
 import Messages from '../Messages';
 
@@ -25,9 +25,29 @@ class HomePage extends Component {
         <h1>Home Page</h1>
         <p>The Home Page is accessible by every signed in user.</p>
 
+        <AuthUserContext.Consumer>
+          {authUser => (
+             <Words authUser={authUser}/>
+          )}
+        </AuthUserContext.Consumer>
         <Messages users={users} />
       </div>
     );
+  }
+}
+
+class Words extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    console.log(this.props.authUser);
+    return (
+        <div>
+
+        </div>
+    )
   }
 }
 
