@@ -5,6 +5,7 @@ import { compose } from 'recompose';
 import {AuthUserContext, withAuthorization, withEmailVerification} from '../Session';
 import { withFirebase } from '../Firebase';
 import Messages from '../Messages';
+import Words from '../Words';
 
 class HomePage extends Component {
   componentDidMount() {
@@ -24,30 +25,14 @@ class HomePage extends Component {
       <div>
         <h1>Home Page</h1>
         <p>The Home Page is accessible by every signed in user.</p>
-
         <AuthUserContext.Consumer>
           {authUser => (
              <Words authUser={authUser}/>
           )}
         </AuthUserContext.Consumer>
-        <Messages users={users} />
+        {/*<Messages users={users} />*/}
       </div>
     );
-  }
-}
-
-class Words extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    console.log(this.props.authUser);
-    return (
-        <div>
-
-        </div>
-    )
   }
 }
 
