@@ -11,20 +11,34 @@ class Words extends Component {
 
 		this.state = {
 			text: '',
+			loading: false,
 		};
 	}
 	componentDidMount() {
-		// this.props.firebase.message(this.props.authUser.uid).on('value', snapshot => {
-		// 	this.props.applySetMessages(snapshot.val());
-		// });
+		// if (!this.props.words.length) {
+		// 	this.setState({ loading: true });
+		// }
+
 		this.onListenForMessages();
+	}
+
+	componentDidUpdate(props) {
+		if (props.limit !== this.props.limit) {
+			this.onListenForMessages();
+		}
+	}
+
+	componentWillUnmount() {
+		this.props.firebase.userWords().off();
 	}
 	onListenForMessages = () => {
 		this.props.firebase
-			.userWord(this.props.authUser.uid)
+			.userWords(this.props.authUser.uid)
 			.orderByChild('createdAt')
 			.on('value', snapshot => {
-				console.log(snapshot.val())
+				this.props.onSetWords(snapshot.val());
+
+				this.setState({ loading: false });
 			});
 	};
 	onCreateMessage = (event) => {
@@ -42,10 +56,9 @@ class Words extends Component {
 	};
 	render() {
 		const { text } = this.state;
-		console.log(this.props);
 		return (
 			<div>
-				{this.props.authUser.email}
+
 				<form
 					onSubmit={event =>
 						this.onCreateMessage(event)
@@ -62,11 +75,15 @@ class Words extends Component {
 }
 
 const mapStateToProps = state => ({
-	messages: state.messageState.messages,
+	words: state.wordsState.words,
+	limit: state.wordsState.limit,
 });
 
 const mapDispatchToProps = dispatch => ({
-	applySetMessages: messages => dispatch({ type: 'MESSAGES_SET', messages }),
+	onSetWords: words =>
+		dispatch({ type: 'WORDS_SET', words }),
+	onSetWordsLimit: limit =>
+		dispatch({ type: 'WORDS_LIMIT_SET', limit }),
 });
 
 const condition = authUser => !!authUser;
