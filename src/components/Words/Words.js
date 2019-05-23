@@ -5,12 +5,14 @@ import { compose } from 'recompose';
 import {AuthUserContext, withAuthorization, withEmailVerification} from '../Session';
 import { withFirebase } from '../Firebase';
 import WordsTranslation from './WordsTranslation'
+import {googleTranslate } from '../../operations/operations'
 class Words extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			text: '',
+			translateText:''
 		};
 	}
 	componentDidMount() {
@@ -47,6 +49,15 @@ class Words extends Component {
 	onChangeText = event => {
 		this.setState({ text: event.target.value });
 	};
+
+	onTranslate = () =>{
+		console.log(this.state.text);
+		googleTranslate.translate( this.state.text, 'pl', function(err, translation) {
+
+			console.log(translation)
+		});
+	};
+
 	render() {
 		const { text } = this.state;
 		return (
@@ -60,6 +71,7 @@ class Words extends Component {
 						type="text"
 						value={text}
 						onChange={this.onChangeText}/>
+					<button type="button" onClick={this.onTranslate}>Translate</button>
 					<button type="submit">Send</button>
 				</form>
 			</div>

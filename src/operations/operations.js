@@ -1,6 +1,2 @@
-const fetchWord = async () =>{
-	const response = await fetch('',{method:'GET'});
-	const json = await response.json();
 
-	return json;
-};
+export const googleTranslate = require('google-translate')(process.env.REACT_APP_API_KEY_GOOGLE_TRANSLATION);
