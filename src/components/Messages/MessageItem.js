@@ -23,7 +23,6 @@ class MessageItem extends Component {
 
   onSaveEditText = () => {
     this.props.onEditMessage(this.props.message, this.state.editText);
-
     this.setState({ editMode: false });
   };
 
