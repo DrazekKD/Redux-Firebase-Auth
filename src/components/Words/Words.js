@@ -14,27 +14,6 @@ class Words extends Component {
 			targetLanguage:'en'
 		};
 	}
-	// componentDidMount() {
-	// 	this.onListenForMessages();
-	// }
-	//
-	// componentDidUpdate(props) {
-	// 	if (props.limit !== this.props.limit) {
-	// 		this.onListenForMessages();
-	// 	}
-	// }
-	//
-	// componentWillUnmount() {
-	// 	this.props.firebase.userWords().off();
-	// }
-	// onListenForMessages = () => {
-	// 	this.props.firebase
-	// 		.userWords(this.props.authUser.uid)
-	// 		.orderByChild('createdAt')
-	// 		.on('value', snapshot => {
-	// 			this.props.onSetWords(snapshot.val());
-	// 		});
-	// };
 	onCreateMessage = (event) => {
 		this.props.firebase.userWords(this.props.authUser.uid).push({
 			text: this.state.text,
