@@ -15,7 +15,7 @@ class Flashcards extends Component {
 	render() {
 		return (
 
-				<div className="flip-card">
+				<div className="flip-card" aria-haspopup="true">
 					<div className="flip-card-inner">
 						<div className="flip-card-front">
 							<div>{this.props.data.text}</div>
