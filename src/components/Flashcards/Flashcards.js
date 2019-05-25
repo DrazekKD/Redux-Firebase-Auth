@@ -21,7 +21,7 @@ class Flashcards extends Component {
 		return (
 			<AuthUserContext.Consumer>
 				{authUser => (
-					<FlashcardsList authUser={authUser}/>
+					<FlashcardsList  authUser={authUser}/>
 				)}
 			</AuthUserContext.Consumer>
 		)

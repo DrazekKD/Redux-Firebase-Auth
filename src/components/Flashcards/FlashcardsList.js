@@ -4,7 +4,7 @@ import { compose } from 'recompose';
 
 import {AuthUserContext, withAuthorization, withEmailVerification} from '../Session';
 import { withFirebase } from '../Firebase';
-
+import FlashcardsItem from './FlashcardsItem'
 
 class FlashcardsList extends Component {
 	constructor(props) {
@@ -30,22 +30,16 @@ class FlashcardsList extends Component {
 	onListenForMessages = () => {
 		this.props.firebase
 			.userWords(this.props.authUser.uid)
-			.on('value', snapshot => {
-				// this.props.onSetFlashcards(snapshot.val());
+			.once('value', snapshot => {
 				this.setState({flashcards: Object.keys(snapshot.val()).map(key => snapshot.val()[key])})
 			});
 	};
 
 	render() {
 		const {flashcards} = this.state;
-		console.log(Object.keys(flashcards).map(key => flashcards[key]))
-		// const List = (flashcards) => {
-		// 	return (Object.keys(flashcards).map(key => <p>{flashcards[key]}</p>))
-		// }
+		console.log();
 		return (
-			<div>
-			 {/*<List/>*/}
-			</div>
+				Object.keys(flashcards).map(item => <FlashcardsItem data={flashcards[item]}/>)
 		)
 	}
 }
