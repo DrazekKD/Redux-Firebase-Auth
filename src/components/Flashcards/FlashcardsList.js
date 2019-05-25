@@ -36,9 +36,20 @@ class FlashcardsList extends Component {
 			});
 	};
 
+
 	render() {
 		const {flashcards} = this.state;
-		return(!!flashcards.length && Object.keys(flashcards).map(item => <FlashcardsItem data={flashcards[item]}/>))
+		const List = () => {
+			if(!!flashcards.length)
+				return Object.keys(flashcards).map(item => <FlashcardsItem data={flashcards[item]}/>)
+			else
+				return <div> You don't have any flashcards :( </div>
+		};
+		return(
+			<div className="flashcard-list-component">
+				<List/>
+			</div>
+		)
 	}
 }
 const condition = authUser => !!authUser;

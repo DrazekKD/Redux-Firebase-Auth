@@ -6,9 +6,10 @@ import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
-
+import './signIn.scss'
+import logoGoogle from '../../img/iconfinder_new-google-favicon_682665.png'
 const SignInPage = () => (
-  <div>
+  <div className="signIn-component">
     <h1>SignIn</h1>
     <SignInForm />
     <SignInGoogle />
@@ -131,8 +132,8 @@ class SignInGoogleBase extends Component {
     const { error } = this.state;
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <button className="forgot" type="submit">Sign In with Google</button>
+      <form onSubmit={this.onSubmit} className="google-form-component">
+          <button className="forgot" type="submit">Sign In with Google <img className="google-btn" width="30px" src={logoGoogle}></img></button>
 
         {error && <p>{error.message}</p>}
       </form>

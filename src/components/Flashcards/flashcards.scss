@@ -1,9 +1,16 @@
-
+//List
+.flashcard-list-component {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
 
 //Item
 .flip-card {
 	background-color: transparent;
-	width: 300px;
+	width: 40%;
 	height: 200px;
 	perspective: 1000px;
 	margin: 20px;
@@ -32,16 +39,20 @@
 	height: 100%;
 	backface-visibility: hidden;
 	vertical-align: middle;
+	font-size: 40px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color: #fff;
+	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 }
 
 
 .flip-card-front {
 	background-color: #bbb;
-	color: black;
 }
 
 .flip-card-back {
 	background-color: dodgerblue;
-	color: white;
 	transform: rotateY(180deg);
 }

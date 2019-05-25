@@ -5,6 +5,7 @@ h1{
 	text-transform: uppercase;
 	padding: 10px;
 	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+	color: dodgerblue;
 }
 form {
 	margin: 0 auto;
@@ -82,12 +83,21 @@ input[type="submit"]:active {
 	float:left;
 	clear:left;
 	display:inline-block;
-	color:cornflowerblue;
+	color:#fff;
 	text-decoration:none;
 	border-radius:10px;
+	background-color: dodgerblue ;
+	font-size: 16px;
 }
 
 .forgot:hover,
 .register:hover {
-	color:darkgray;
+	background-color: cornflowerblue;
+}
+.google-form-component {
+	display: flex;
+	justify-content: center;
+	.google-btn {
+		vertical-align: middle;
+	}
 }

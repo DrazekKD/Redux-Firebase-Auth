@@ -6,6 +6,7 @@ import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 import './navigation.scss'
+import logo from '../../img/google-translate-500x260.png'
 
 const Navigation = () => (
   <AuthUserContext.Consumer>
@@ -21,6 +22,7 @@ const Navigation = () => (
 
 const NavigationAuth = ({ authUser }) => (
     <div className="header">
+		<img src={logo} alt="" className="logo"/>
 		<input className="menu-btn" type="checkbox" id="menu-btn"/>
 		<label className="menu-icon" htmlFor="menu-btn">
 			<span class="navicon"></span></label>
@@ -49,6 +51,7 @@ const NavigationAuth = ({ authUser }) => (
 
 const NavigationNonAuth = () => (
     <div className="header">
+		<img src={logo} alt="" className="logo"/>
 		<input className="menu-btn" type="checkbox" id="menu-btn"/>
 		<label className="menu-icon" htmlFor="menu-btn">
             <span class="navicon"></span></label>

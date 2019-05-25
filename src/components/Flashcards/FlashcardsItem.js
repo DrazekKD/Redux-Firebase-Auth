@@ -14,7 +14,7 @@ class Flashcards extends Component {
 	}
 	render() {
 		return (
-			<div>
+
 				<div className="flip-card">
 					<div className="flip-card-inner">
 						<div className="flip-card-front">
@@ -25,7 +25,6 @@ class Flashcards extends Component {
 						</div>
 					</div>
 				</div>
-			</div>
 	)
 	}
 }

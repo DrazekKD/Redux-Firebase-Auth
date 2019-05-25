@@ -3,6 +3,7 @@ import { compose } from 'recompose';
 
 import {AuthUserContext, withAuthorization, withEmailVerification} from '../Session';
 import { withFirebase } from '../Firebase';
+import './word.scss'
 class Words extends Component {
 	constructor(props) {
 		super(props);
@@ -45,7 +46,7 @@ class Words extends Component {
 		const { text, translateText, targetLanguage ,sourceLanguage} = this.state;
 		return (
 			<div>
-				<form
+				<form className="translation-form-container"
 					onSubmit={event =>
 						this.onCreateMessage(event)
 					}>
@@ -53,12 +54,12 @@ class Words extends Component {
 						type="text"
 						value={text}
 						onChange={this.onChangeText}/>
-					<button className="forgot" type="button" onClick={()=>this.onTranslate(text,sourceLanguage,targetLanguage)}>Translate</button>
+					<button className="forgot translation-btn" type="button" onClick={()=>this.onTranslate(text,sourceLanguage,targetLanguage)}>Translate</button>
 					<input
 						type="text"
 						value={translateText}
 						onChange={this.onChangeTranslateText}/>
-					<button className="forgot" type="submit" disabled={!(!!translateText && !!text)}>Send</button>
+					<button className="forgot translation-btn green" type="submit" disabled={!(!!translateText && !!text)}>Save Flashcard</button>
 				</form>
 			</div>
 		)
