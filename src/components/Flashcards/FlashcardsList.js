@@ -31,26 +31,16 @@ class FlashcardsList extends Component {
 		this.props.firebase
 			.userWords(this.props.authUser.uid)
 			.once('value', snapshot => {
-				this.setState({flashcards: Object.keys(snapshot.val()).map(key => snapshot.val()[key])})
+				if(snapshot.val())
+					this.setState({flashcards: Object.keys(snapshot.val()).map(key => snapshot.val()[key])})
 			});
 	};
 
 	render() {
 		const {flashcards} = this.state;
-		console.log();
-		return (
-				Object.keys(flashcards).map(item => <FlashcardsItem data={flashcards[item]}/>)
-		)
+		return(!!flashcards.length && Object.keys(flashcards).map(item => <FlashcardsItem data={flashcards[item]}/>))
 	}
 }
-// const mapStateToProps = state => ({
-// 	flashcards: state.flashcardsState.flashcards,
-// });
-
-// const mapDispatchToProps = dispatch => ({
-// 	onSetFlashcards: flashcards => dispatch({ type: 'USERS_SET', flashcards }),
-// });
-
 const condition = authUser => !!authUser;
 export default compose(
 	withFirebase,

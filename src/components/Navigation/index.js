@@ -26,9 +26,6 @@ const NavigationAuth = ({ authUser }) => (
 			<span class="navicon"></span></label>
       <ul className="menu">
         <li>
-          <Link to={ROUTES.LANDING}>Landing</Link>
-        </li>
-        <li>
           <Link to={ROUTES.HOME}>Home</Link>
         </li>
         <li>

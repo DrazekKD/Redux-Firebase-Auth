@@ -53,12 +53,12 @@ class Words extends Component {
 						type="text"
 						value={text}
 						onChange={this.onChangeText}/>
+					<button className="forgot" type="button" onClick={()=>this.onTranslate(text,sourceLanguage,targetLanguage)}>Translate</button>
 					<input
 						type="text"
 						value={translateText}
 						onChange={this.onChangeTranslateText}/>
-					<button type="button" onClick={()=>this.onTranslate(text,sourceLanguage,targetLanguage)}>Translate</button>
-					<button type="submit" disabled={!(!!translateText && !!text)}>Send</button>
+					<button className="forgot" type="submit" disabled={!(!!translateText && !!text)}>Send</button>
 				</form>
 			</div>
 		)

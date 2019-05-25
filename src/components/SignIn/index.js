@@ -12,8 +12,8 @@ const SignInPage = () => (
     <h1>SignIn</h1>
     <SignInForm />
     <SignInGoogle />
-    <SignInFacebook />
-    <SignInTwitter />
+    {/*<SignInFacebook />*/}
+    {/*<SignInTwitter />*/}
     <PasswordForgetLink />
     <SignUpLink />
   </div>
@@ -105,11 +105,12 @@ class SignInGoogleBase extends Component {
       .doSignInWithGoogle()
       .then(socialAuthUser => {
         // Create a user in your Firebase Realtime Database too
-        return this.props.firebase.user(socialAuthUser.user.uid).set({
-          username: socialAuthUser.user.displayName,
-          email: socialAuthUser.user.email,
-          roles: [],
-        });
+          if(!this.props.firebase.user(socialAuthUser.user.uid)) {
+			  return this.props.firebase.user(socialAuthUser.user.uid).set({
+				  username: socialAuthUser.user.displayName,
+				  email: socialAuthUser.user.email,
+			  });
+		  }
       })
       .then(() => {
         this.setState({ error: null });
@@ -131,7 +132,7 @@ class SignInGoogleBase extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Google</button>
+        <button className="forgot" type="submit">Sign In with Google</button>
 
         {error && <p>{error.message}</p>}
       </form>
@@ -154,7 +155,7 @@ class SignInFacebookBase extends Component {
         return this.props.firebase.user(socialAuthUser.user.uid).set({
           username: socialAuthUser.additionalUserInfo.profile.name,
           email: socialAuthUser.additionalUserInfo.profile.email,
-          roles: [],
+          roles: []
         });
       })
       .then(() => {

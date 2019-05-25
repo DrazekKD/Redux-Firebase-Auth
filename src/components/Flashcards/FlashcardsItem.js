@@ -18,10 +18,10 @@ class Flashcards extends Component {
 				<div className="flip-card">
 					<div className="flip-card-inner">
 						<div className="flip-card-front">
-							<span>{this.props.data.text}</span><br/>
+							<div>{this.props.data.text}</div>
 						</div>
 						<div className="flip-card-back">
-							<span>{this.props.data.translation}</span>
+							<div>{this.props.data.translation}</div>
 						</div>
 					</div>
 				</div>

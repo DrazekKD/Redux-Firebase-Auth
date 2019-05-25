@@ -96,38 +96,38 @@ class LoginManagementBase extends Component {
 
     return (
       <div>
-        Sign In Methods:
-        <ul>
-          {SIGN_IN_METHODS.map(signInMethod => {
-            const onlyOneLeft = activeSignInMethods.length === 1;
-            const isEnabled = activeSignInMethods.includes(
-              signInMethod.id,
-            );
+        {/*Sign In Methods:*/}
+        {/*<ul>*/}
+          {/*{SIGN_IN_METHODS.map(signInMethod => {*/}
+            {/*const onlyOneLeft = activeSignInMethods.length === 1;*/}
+            {/*const isEnabled = activeSignInMethods.includes(*/}
+              {/*signInMethod.id,*/}
+            {/*);*/}
 
-            return (
-              <li key={signInMethod.id}>
-                {signInMethod.id === 'password' ? (
-                  <DefaultLoginToggle
-                    onlyOneLeft={onlyOneLeft}
-                    isEnabled={isEnabled}
-                    signInMethod={signInMethod}
-                    onLink={this.onDefaultLoginLink}
-                    onUnlink={this.onUnlink}
-                  />
-                ) : (
-                  <SocialLoginToggle
-                    onlyOneLeft={onlyOneLeft}
-                    isEnabled={isEnabled}
-                    signInMethod={signInMethod}
-                    onLink={this.onSocialLoginLink}
-                    onUnlink={this.onUnlink}
-                  />
-                )}
-              </li>
-            );
-          })}
-        </ul>
-        {error && error.message}
+            {/*return (*/}
+              {/*<li key={signInMethod.id}>*/}
+                {/*{signInMethod.id === 'password' ? (*/}
+                  {/*<DefaultLoginToggle*/}
+                    {/*onlyOneLeft={onlyOneLeft}*/}
+                    {/*isEnabled={isEnabled}*/}
+                    {/*signInMethod={signInMethod}*/}
+                    {/*onLink={this.onDefaultLoginLink}*/}
+                    {/*onUnlink={this.onUnlink}*/}
+                  {/*/>*/}
+                {/*) : (*/}
+                  {/*<SocialLoginToggle*/}
+                    {/*onlyOneLeft={onlyOneLeft}*/}
+                    {/*isEnabled={isEnabled}*/}
+                    {/*signInMethod={signInMethod}*/}
+                    {/*onLink={this.onSocialLoginLink}*/}
+                    {/*onUnlink={this.onUnlink}*/}
+                  {/*/>*/}
+                {/*)}*/}
+              {/*</li>*/}
+            {/*);*/}
+          {/*})}*/}
+        {/*</ul>*/}
+        {/*{error && error.message}*/}
       </div>
     );
   }
@@ -213,7 +213,7 @@ class DefaultLoginToggle extends Component {
           placeholder="Confirm New Password"
         />
 
-        <button disabled={isInvalid} type="submit">
+        <button className="forgot" disabled={isInvalid} type="submit">
           Link {signInMethod.id}
         </button>
       </form>
