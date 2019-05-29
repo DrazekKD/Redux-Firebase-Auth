@@ -36,11 +36,11 @@ const NavigationAuth = ({ authUser }) => (
           <li>
               <Link to={ROUTES.FLASHCARDS}>Flashcards</Link>
           </li>
-        {authUser.roles.includes(ROLES.ADMIN) && (
-          <li>
-            <Link to={ROUTES.ADMIN}>Admin</Link>
-          </li>
-        )}
+        {/*{authUser.roles.includes(ROLES.ADMIN) && (*/}
+          {/*<li>*/}
+            {/*<Link to={ROUTES.ADMIN}>Admin</Link>*/}
+          {/*</li>*/}
+        {/*)}*/}
         <li>
           <SignOutButton />
         </li>
